@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -33,3 +32,14 @@ int crear_evento(ALLEGRO_EVENT_QUEUE **event_queue){
    }
 	return 1;
 	} 
+
+int crear_display(ALLEGRO_DISPLAY ** display,int altura,int anchura){
+		(*display) = al_create_display(altura, anchura);
+   if(!(*display)) {
+      fprintf(stderr, "failed to create display!\n");
+      return 0;
+   }
+	
+	return 1;
+	
+	}

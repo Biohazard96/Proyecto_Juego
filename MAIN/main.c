@@ -10,20 +10,19 @@ const float FPS = 60;
 
 int main(int argc, char **argv){
    int i;
+   int x=0;
+   int z=320;
    ALLEGRO_DISPLAY *display = NULL;
    ALLEGRO_EVENT_QUEUE *event_queue = NULL;
    ALLEGRO_TIMER *timer = NULL;
    bool redraw = true;
+
+	al_init_primitives_addon();
 	
 	if(!init_al()) return -1;
-	
-	display = al_create_display(640, 480);
-   if(!display) {
-      fprintf(stderr, "failed to create display!\n");
-      al_destroy_timer(timer);
-      return -1;
-   }
-	
+
+	if(!crear_display(&display,640,480)) return -1;
+
 	
 	if(!crear_timer(&timer,FPS)) {
 		al_destroy_display(display);
@@ -56,6 +55,10 @@ int main(int argc, char **argv){
          redraw = true;
          if(i<255)i++;
          else i=0;
+         if(z<640)z++;
+         else z=320;
+         if(x<320)x++;
+         else x=0;
       }
       else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
          break;
@@ -63,7 +66,8 @@ int main(int argc, char **argv){
  
       if(redraw && al_is_event_queue_empty(event_queue)) {
          redraw = false;
-         al_clear_to_color(al_map_rgb(i,i,i));
+         al_clear_to_color(al_map_rgb(255,255,255));
+         al_draw_line(x,0,z,0,al_map_rgb(i,0,i),50);  
          al_flip_display();
       }
    }

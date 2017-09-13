@@ -9,6 +9,6 @@
 int crear_timer(ALLEGRO_TIMER **,const float);
 int init_al(void);
 int crear_evento(ALLEGRO_EVENT_QUEUE **);
-
+int crear_display(ALLEGRO_DISPLAY **,int,int);
 
 
