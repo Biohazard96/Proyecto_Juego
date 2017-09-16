@@ -6,9 +6,10 @@
 
 int main (int argc, char ** argv){
 	
-	struct score aux;
+	struct score aux,*aux2;
 	struct score * INI=NULL;
 	int estado;
+	
 	
 	
 	cargar_lista(&INI);
@@ -29,6 +30,11 @@ imprimir_lista(&INI);
 	ordenar_mayor_menor(&INI); //ordeno "int dato" de la lista
 	imprimir_lista(&INI);
 	guardar_lista(&INI);
+	
+	for(aux2=INI,INI=INI->sig;INI!=NULL;INI=INI->sig){
+		free(aux2);
+		aux2=INI;
+		}
 	
 	return 0;
 	}
