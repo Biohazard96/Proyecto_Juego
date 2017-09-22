@@ -14,7 +14,11 @@
 
 int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
 	
-   struct color aux1={255,0,0};	
+   struct color aux1={0,255,0}; // color de "<-VOLVER"	
+   struct color aux2={0,0,255};// color de "VEGETA"
+   struct color aux3={0,0,255};// color de "GOKU"
+   struct color aux4={0,0,255};//color de "FREZEER"
+   struct color aux5={0,0,255};//color de "BILLS"
    struct frames GOKU={4,0,0,5};	
    struct frames VEGETA={3,0,0,5};
    struct frames FREZEER={3,0,0,5};
@@ -53,14 +57,14 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
    al_init_primitives_addon(); //addon para hacer figuras
    al_install_keyboard(); //instalo el teclado
    al_install_mouse(); // instalo el mouse
-   al_init_font_addon();  // addon para cargar fuentes de letras
+   al_init_font_addon();  // addon para cargar fuentes de letras#CE5F5F
    al_init_ttf_addon(); // addon para usar fuentes .ttf
    
    font=al_load_font("arial.ttf",25,0); // asigno font 
    
 //---------------RUTINA PARA CARGAR IMAGEN---------------------------------------------------------------------------------------------------------------------------------
    image=al_load_bitmap("Seleccion_de_personajes.png"); // cargo fondo de pantalla          PENDIENTE: HACER UN IF EN CASO DE QUE NO CARGUE LA IMAGEN
-   goku[0]=al_load_bitmap("goku2.png"); //cargo imagen
+   goku[0]=al_load_bitmap("goku2.png"); //cargo imagen                                      // PENDIENTE : HACER FUNCION QUE CARGE IMAGENES
    goku[1]=al_load_bitmap("goku3.png"); //cargo imagen
    goku[2]=al_load_bitmap("goku4.png"); //cargo imagen
    goku[3]=al_load_bitmap("goku5.png"); //cargo imagen
@@ -103,18 +107,7 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
    bills[27]=al_load_bitmap("b28.bmp"); //cargo imagen
    bills[28]=al_load_bitmap("b29.bmp"); //cargo imagen
    
-	for(i=0 ; i<GOKU.maxFrame;i++){
-		al_convert_mask_to_alpha(goku[i],al_map_rgb(106,76,48));   // con esto borro el fondo de un sprite para dejar solo la imagen
-		
-		}
-    for(i=0 ; i<VEGETA.maxFrame;i++){
-		al_convert_mask_to_alpha(vegeta[i],al_map_rgb(106,76,48));   // con esto borro el fondo de un sprite para dejar solo la imagen
-		
-		}
-    for(i=0 ; i<FREZEER.maxFrame;i++){
-		al_convert_mask_to_alpha(frezeer[i],al_map_rgb(106,76,48));   // con esto borro el fondo de un sprite para dejar solo la imagen
-		
-		}
+
     for(i=0 ; i<BILLS.maxFrame;i++){
 		al_convert_mask_to_alpha(bills[i],al_map_rgb(107,204,48));   // con esto borro el fondo de un sprite para dejar solo la imagen
 		
@@ -131,7 +124,9 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
    al_flip_display();
  
    al_start_timer(timer); // comienza en timer
- 
+   
+   
+ //-----------------------------//////////COMIENZO WHILE(1)////////////////////////////////---------------------------------------------------------------------
    while(1)
    {
       ALLEGRO_EVENT ev;    // variable usada para guardar eventos
@@ -186,13 +181,70 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
 		   
 			  return 0;
 		   }
-		 }else {
+		   }else if(state_mouse2.x > 50 && state_mouse2.x < 125 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "VEGETA" le cambia color
+           aux2.RED=255;
+           aux2.GREEN=255;
+           aux2.BLUE=0;
+			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu
+            {//TEMPORAL
+				for(i=0 ; i<4;i++) {al_destroy_bitmap(goku[i]);}
+		
+				al_destroy_bitmap(image);//libero imagen
+			  return 0;
+			}
+		 }else if(state_mouse2.x > 220 && state_mouse2.x < 280 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "GOKU" le cambia color
+           aux3.RED=255;
+           aux3.GREEN=255;
+           aux3.BLUE=0;
+			if(state_mouse2.buttons & 1) // si hago click sobre GOKU regresa al menu
+            {//TEMPORAL
+				for(i=0 ; i<4;i++){ al_destroy_bitmap(goku[i]);}
+		
+				al_destroy_bitmap(image);//libero imagen
+			  return 0;
+			}
+			}else if(state_mouse2.x > 370 && state_mouse2.x < 460 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "FREZEER" le cambia color
+           aux4.RED=255;
+           aux4.GREEN=255;
+           aux4.BLUE=0;
+			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu
+            {//TEMPORAL
+				for(i=0 ; i<4;i++) {al_destroy_bitmap(goku[i]);}
+		
+				al_destroy_bitmap(image);//libero imagen
+			  return 0;
+			}
+			}else if(state_mouse2.x > 550 && state_mouse2.x < 610 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "BILLS" le cambia color
+           aux5.RED=255;
+           aux5.GREEN=255;
+           aux5.BLUE=0;
+			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu
+            {//TEMPORAL
+				for(i=0 ; i<4;i++){al_destroy_bitmap(goku[i]);}
+		
+				al_destroy_bitmap(image);//libero imagen
+			  return 0;
+			}
+			}else {
            aux1.RED=255;
            aux1.GREEN=0;
-           aux1.BLUE=0;			 
+           aux1.BLUE=0;
+           aux2.RED=0;
+           aux2.GREEN=0;
+           aux2.BLUE=255;
+           aux3.RED=0;
+           aux3.GREEN=0;
+           aux3.BLUE=255;
+           aux4.RED=0;
+           aux4.GREEN=0;
+           aux4.BLUE=255;
+           aux5.RED=0;
+           aux5.GREEN=0;
+           aux5.BLUE=255;
 			 }
 		
-      }
+      
+  }
 //----------------------------RUTINA DE TECLADO---------------------------------------------------------------------------------------------
    else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
 				switch(ev.keyboard.keycode)
@@ -220,7 +272,7 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
 			al_destroy_bitmap(image);
          return -1;
       }
-    printf("pos x = %d  pos y = %d \n",pos_x,pos_y); // sirve para saber la posicion del mouse en el eje (x ,y)
+    printf("pos x = %d  pos y = %d \n",state_mouse2.x,state_mouse2.y); // sirve para saber la posicion del mouse en el eje (x ,y)
  //------------------------------------------------------------------------------------------------>
       if(redraw && al_is_event_queue_empty(event_queue)) {                                          
           redraw = false;																			
@@ -231,13 +283,17 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
           al_draw_bitmap(frezeer[FREZEER.curFrame],390,105,0);//pongo en pantalla a frezeer
           al_draw_bitmap(bills[BILLS.curFrame],550,85,0);//pongo en pantalla a bills
 		  al_draw_text(font,al_map_rgb(aux1.RED,aux1.GREEN,aux1.BLUE),20,320,0,"<-Volver"); //muestro texto
+		  al_draw_text(font,al_map_rgb(aux2.RED,aux2.GREEN,aux2.BLUE),50,155,0,"VEGETA"); //muestro texto 
+		  al_draw_text(font,al_map_rgb(aux3.RED,aux3.GREEN,aux3.BLUE),220,155,0,"GOKU"); //muestro texto
+		  al_draw_text(font,al_map_rgb(aux4.RED,aux4.GREEN,aux4.BLUE),370,155,0,"FREZEER"); //muestro texto
+		  al_draw_text(font,al_map_rgb(aux5.RED,aux5.GREEN,aux5.BLUE),550,155,0,"BILLS"); //muestro texto
 		  al_draw_text(font,al_map_rgb(0,0,255),190,20,0,"SELECCION DE PERSONAJES"); //muestro texto en posicion (x,y)
 		  al_flip_display();
           al_clear_to_color(al_map_rgb(0,0,0));																								
 																									
       }
    }
-   
+///////////////////////////FIN WHILE(1)//////////////////////////////////////////////////////////////////////////////////////////////////////////   
      for(i=0 ; i<4;i++){
 		al_destroy_bitmap(goku[i]);
 		}  
