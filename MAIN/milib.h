@@ -7,6 +7,7 @@
 #define ANCHO 640
 #define ALTO 360
 #define FPS 60
+#define FPS_2 8
 
 struct color{
 	int RED;
@@ -14,13 +15,17 @@ struct color{
 	int BLUE;
 	};
 
-
-
+struct frames{ // USADO PARA MANEJAR SPRITES
+	const int maxFrame ; // maximo de cuadros que tendra una animacion de sprite. CANTIDAD DE IMAGENES
+	int curFrame ;    // contador 
+	int frameCount ;  // contador de cuadros
+	int frameDelay ; // retraso que tendra la animacion luego de completar su ciclo, si es cercano al "cero" va mas rapido. Tambien varia de los FPS 
+};
 
 
 int crear_timer(ALLEGRO_TIMER **,const float);
 int init_al(void);
 int crear_evento(ALLEGRO_EVENT_QUEUE **);
 int crear_display(ALLEGRO_DISPLAY **,int,int);
-int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *,ALLEGRO_MOUSE_STATE *);
+int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *);
 int MENU(ALLEGRO_MOUSE_STATE * ,struct color *,struct color *,struct color *);

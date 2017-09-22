@@ -15,6 +15,7 @@ int main(int argc, char **argv){
    struct color aux2={255,0,0};
    struct color aux3={255,0,0};
 
+   
    ALLEGRO_DISPLAY *display = NULL;
    ALLEGRO_EVENT_QUEUE *event_queue = NULL;
    ALLEGRO_TIMER *timer = NULL;
@@ -47,7 +48,7 @@ int main(int argc, char **argv){
 		return -1;
 		}
 		
-	al_init_primitives_addon(); //addon para hacer figuras
+	al_init_primitives_addon(); //addon para hacer figura
 	al_init_font_addon();  // addon para cargar fuentes de letras
 	al_init_ttf_addon(); // addon para usar fuentes .ttf
 	al_install_mouse();  // instalo el mouse 
@@ -62,7 +63,7 @@ int main(int argc, char **argv){
       al_destroy_display(display);
       return 0;
    }
-  
+  //----------------EVENTOS QUE PUEDE recibir LA COLA DE EVENTOS--------------------------------------------------------------------- 
    al_register_event_source(event_queue, al_get_keyboard_event_source());
 	 
    al_register_event_source(event_queue, al_get_display_event_source(display));
@@ -70,7 +71,7 @@ int main(int argc, char **argv){
    al_register_event_source(event_queue, al_get_timer_event_source(timer));
    
    al_register_event_source(event_queue,al_get_mouse_event_source());
-	
+//-------------------------------------------------------------------------------------	
    al_clear_to_color(al_map_rgb(0,0,0));
   
    al_flip_display();
@@ -86,10 +87,11 @@ int main(int argc, char **argv){
          redraw = true;
 		al_get_mouse_state(&state_mouse);
 		
-		if(MENU(&state_mouse,&aux1,&aux2,&aux3)==-1){ //SI APRETO SALIR
+	  if(MENU(&state_mouse,&aux1,&aux2,&aux3)==-1){ //SI APRETO SALIR O LA CRUZ
 			break;
 			}else if(MENU(&state_mouse,&aux1,&aux2,&aux3)==1){ //SI APRETO COMENZAR JUEGO 
-				if(!SELECCION_DE_PERSONAJES(display,&state_mouse)){
+				
+				if(SELECCION_DE_PERSONAJES(display)==0){ // SI APRETO VOLVER // LLAMO FUNCION SELECCION DE PERSONAJES
 					
 					MENU(&state_mouse,&aux1,&aux2,&aux3);
 					 
@@ -99,7 +101,7 @@ int main(int argc, char **argv){
 					}
 		
       }
-      else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+      else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) { //Si apreto la cruz sale del programa
          break;
       }
 	  
@@ -113,12 +115,13 @@ int main(int argc, char **argv){
 		 al_draw_text(font,al_map_rgb(aux1.RED,aux1.GREEN,aux1.BLUE),20,300,0,"COMENZAR JUEGO"); //muestro texto
 		 al_draw_text(font,al_map_rgb(aux2.RED,aux2.GREEN,aux2.BLUE),320,300,0,"PUNTOS");  //muestro texto
 		 al_draw_text(font,al_map_rgb(aux3.RED,aux3.GREEN,aux3.BLUE),500,300,0,"SALIR"); //muestro texto
+		 
          al_flip_display();
       }
    }
    
    //al_destroy 
-   al_destroy_bitmap(image);
+   
    al_destroy_timer(timer);
    al_destroy_display(display);
    al_destroy_event_queue(event_queue);

@@ -1,0 +1,19 @@
+//Cuando la funcion al_wait_for_event(event_queue,&ev) detecta un
+ //evento en la "event_queue". Esta pasa ese evento a la direccion 
+//de "ev" y vacia "event_queue". El Timer es un evento que
+//siempre esta activado por ende cuando se reinicia el ciclo
+//while, redraw = true . "al_is_event_queue_empty(event_queue)"
+//devuelve true si esta vacia y como va a estar vacia y redraw
+// todas las funciones que muestren "imagenes" o "figuras"
+// va a ser true entonces entra al "if". En este "if" se pondran las imagenes 
+
+
+
+//------((((((al_convert_mask_to_alpha(bills[i],al_map_rgb(x,x,x)))))))))))))----;-----> para usar esta funcion debemos saber los colores exactos en rgb del color a transparentar, para esto hay paginas que te dicen los niveles de color en hex que tiene la imagen. Luego hay que convertir esos niveles a rgb por otras paginas 
+
+
+
+
+COSAS PARA HACER
+
+En funcion "seleccion_de_personajes.c" se debe funcionalizar la carga de imagenes y agregar su correspondiente "if" en caso de que las imagenes no se cargen
