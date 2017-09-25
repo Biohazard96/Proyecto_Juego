@@ -7,9 +7,9 @@
 #define ANCHO 640
 #define ALTO 360
 #define FPS 60
-#define FPS_2 8
+#define FPS_2 10
 
-struct color{
+struct color{     
 	int RED;
 	int GREEN;
 	int BLUE;
@@ -29,3 +29,4 @@ int crear_evento(ALLEGRO_EVENT_QUEUE **);
 int crear_display(ALLEGRO_DISPLAY **,int,int);
 int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *);
 int MENU(ALLEGRO_MOUSE_STATE * ,struct color *,struct color *,struct color *);
+void free_image(ALLEGRO_BITMAP **, const int);  // segundo argumento recibe la cantidad de cuadros a liberar ==> "maxFrame"

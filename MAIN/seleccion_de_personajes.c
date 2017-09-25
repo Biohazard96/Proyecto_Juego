@@ -19,10 +19,12 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
    struct color aux3={0,0,255};// color de "GOKU"
    struct color aux4={0,0,255};//color de "FREZEER"
    struct color aux5={0,0,255};//color de "BILLS"
+   
    struct frames GOKU={4,0,0,5};	
    struct frames VEGETA={3,0,0,5};
    struct frames FREZEER={3,0,0,5};
-   struct frames BILLS={29,0,0,10};
+   struct frames BILLS={29,0,0,0};
+   
    int i;                   // auxiliar usada para ciclo for 
    int pos_x = ANCHO / 2;   // posicion en eje x
    int pos_y = ALTO / 2;    // posicion en eje y
@@ -64,18 +66,18 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
    
 //---------------RUTINA PARA CARGAR IMAGEN---------------------------------------------------------------------------------------------------------------------------------
    image=al_load_bitmap("Seleccion_de_personajes.png"); // cargo fondo de pantalla          PENDIENTE: HACER UN IF EN CASO DE QUE NO CARGUE LA IMAGEN
-   goku[0]=al_load_bitmap("goku2.png"); //cargo imagen                                      // PENDIENTE : HACER FUNCION QUE CARGE IMAGENES
-   goku[1]=al_load_bitmap("goku3.png"); //cargo imagen
-   goku[2]=al_load_bitmap("goku4.png"); //cargo imagen
-   goku[3]=al_load_bitmap("goku5.png"); //cargo imagen
+   goku[0]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/goku2.png"); //cargo imagen                                      // PENDIENTE : HACER FUNCION QUE CARGE IMAGENES
+   goku[1]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/goku3.png"); //cargo imagen
+   goku[2]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/goku4.png"); //cargo imagen
+   goku[3]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/goku5.png"); //cargo imagen
    
-   vegeta[0]=al_load_bitmap("vegeta1.png"); //cargo imagen
-   vegeta[1]=al_load_bitmap("vegeta2.png"); //cargo imagen
-   vegeta[2]=al_load_bitmap("vegeta3.png"); //cargo imagen
+   vegeta[0]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/vegeta1.png"); //cargo imagen
+   vegeta[1]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/vegeta2.png"); //cargo imagen
+   vegeta[2]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/vegeta3.png"); //cargo imagen
    
-   frezeer[0]=al_load_bitmap("frezeer1.png"); //cargo imagen
-   frezeer[1]=al_load_bitmap("frezeer2.png"); //cargo imagen
-   frezeer[2]=al_load_bitmap("frezeer3.png"); //cargo imagen
+   frezeer[0]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/frezeer1.png"); //cargo imagen
+   frezeer[1]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/frezeer2.png"); //cargo imagen
+   frezeer[2]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/frezeer3.png"); //cargo imagen
    
    bills[0]=al_load_bitmap("b1.bmp"); //cargo imagen
    bills[1]=al_load_bitmap("b2.bmp"); //cargo imagen
@@ -173,58 +175,76 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
            aux1.RED=0;
            aux1.GREEN=0;
            aux1.BLUE=255;
-			if(state_mouse2.buttons & 1){ // si hago click sobre VOLVER regresa al menu
-				for(i=0 ; i<4;i++){    //libero imagen
-				al_destroy_bitmap(goku[i]);
-				}  
-			al_destroy_bitmap(image);//libero imagen
+			if(state_mouse2.buttons & 1)// si hago click sobre VOLVER regresa al menu
+				{ 
+					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
+					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
+					
+					al_destroy_bitmap(image);//libero imagen
 		   
-			  return 0;
-		   }
+					return 0;
+				}
 		   }else if(state_mouse2.x > 50 && state_mouse2.x < 125 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "VEGETA" le cambia color
            aux2.RED=255;
            aux2.GREEN=255;
            aux2.BLUE=0;
-			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu
+			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu  <<<<<--------------------------//TEMPORAL
             {//TEMPORAL
-				for(i=0 ; i<4;i++) {al_destroy_bitmap(goku[i]);}
-		
-				al_destroy_bitmap(image);//libero imagen
+					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
+					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
+					
+					al_destroy_bitmap(image);//libero imagen
 			  return 0;
 			}
+			
 		 }else if(state_mouse2.x > 220 && state_mouse2.x < 280 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "GOKU" le cambia color
            aux3.RED=255;
            aux3.GREEN=255;
            aux3.BLUE=0;
-			if(state_mouse2.buttons & 1) // si hago click sobre GOKU regresa al menu
+           
+			if(state_mouse2.buttons & 1) // si hago click sobre GOKU regresa al menu  <<<<<--------------------------//TEMPORAL
             {//TEMPORAL
-				for(i=0 ; i<4;i++){ al_destroy_bitmap(goku[i]);}
-		
-				al_destroy_bitmap(image);//libero imagen
+				
+					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
+					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
+					
+					al_destroy_bitmap(image);//libero imagen
 			  return 0;
 			}
 			}else if(state_mouse2.x > 370 && state_mouse2.x < 460 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "FREZEER" le cambia color
            aux4.RED=255;
            aux4.GREEN=255;
            aux4.BLUE=0;
-			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu
+			if(state_mouse2.buttons & 1) // si hago click sobre FREZEER regresa al menu  <<<<<--------------------------//TEMPORAL
             {//TEMPORAL
-				for(i=0 ; i<4;i++) {al_destroy_bitmap(goku[i]);}
-		
-				al_destroy_bitmap(image);//libero imagen
+					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
+					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
+					
+					al_destroy_bitmap(image);//libero imagen
 			  return 0;
 			}
 			}else if(state_mouse2.x > 550 && state_mouse2.x < 610 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "BILLS" le cambia color
            aux5.RED=255;
            aux5.GREEN=255;
            aux5.BLUE=0;
-			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu
-            {//TEMPORAL
-				for(i=0 ; i<4;i++){al_destroy_bitmap(goku[i]);}
-		
-				al_destroy_bitmap(image);//libero imagen
+			if(state_mouse2.buttons & 1) // si hago click sobre BILLS regresa al menu   <<<<<--------------------------//TEMPORAL
+				{
+					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
+					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
+					
+					al_destroy_bitmap(image);//libero imagen
 			  return 0;
-			}
+				}
 			}else {
            aux1.RED=255;
            aux1.GREEN=0;
@@ -266,13 +286,16 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
 		   }
 //-------------------------------------------------------------------------------------------------------------------------------------------	  
    else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-			for(i=0 ; i<4;i++){
-				al_destroy_bitmap(goku[i]);
-				}  
-			al_destroy_bitmap(image);
+	   
+					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
+					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
+					
+					al_destroy_bitmap(image);//libero imagen
          return -1;
       }
-    printf("pos x = %d  pos y = %d \n",state_mouse2.x,state_mouse2.y); // sirve para saber la posicion del mouse en el eje (x ,y)
+    printf("pos x = %d  pos y = %d \n",state_mouse2.x,state_mouse2.y); // sirve para saber la posicion del mouse en el eje (x ,y)/////<<<<<--------
  //------------------------------------------------------------------------------------------------>
       if(redraw && al_is_event_queue_empty(event_queue)) {                                          
           redraw = false;																			
@@ -294,11 +317,11 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
       }
    }
 ///////////////////////////FIN WHILE(1)//////////////////////////////////////////////////////////////////////////////////////////////////////////   
-     for(i=0 ; i<4;i++){
-		al_destroy_bitmap(goku[i]);
-		}  
-     al_destroy_bitmap(image);
-
- 
+					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
+					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
+					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
+					
+					al_destroy_bitmap(image);//libero imagen
    return -2;
 }

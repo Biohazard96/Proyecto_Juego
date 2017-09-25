@@ -85,18 +85,18 @@ int main(int argc, char **argv){
  
       if(ev.type == ALLEGRO_EVENT_TIMER) {
          redraw = true;
-		al_get_mouse_state(&state_mouse);
+		 al_get_mouse_state(&state_mouse);
 		
 	  if(MENU(&state_mouse,&aux1,&aux2,&aux3)==-1){ //SI APRETO SALIR O LA CRUZ
 			break;
 			}else if(MENU(&state_mouse,&aux1,&aux2,&aux3)==1){ //SI APRETO COMENZAR JUEGO 
 				
-				if(SELECCION_DE_PERSONAJES(display)==0){ // SI APRETO VOLVER // LLAMO FUNCION SELECCION DE PERSONAJES
+				if(SELECCION_DE_PERSONAJES(display)==0){ // SI APRETO VOLVER o CRUZ // LLAMO FUNCION SELECCION DE PERSONAJES
 					
 					MENU(&state_mouse,&aux1,&aux2,&aux3);
 					 
 					}
-				}else if (MENU(&state_mouse,&aux1,&aux2,&aux3)==2){//SI APRETO PUNTOS
+				}else if (MENU(&state_mouse,&aux1,&aux2,&aux3)==2){//SI APRETO "PUNTOS"
 					break; //TEMPORAL
 					}
 		
@@ -111,7 +111,7 @@ int main(int argc, char **argv){
          redraw = false;
          
          al_clear_to_color(al_map_rgb(0,0,0)); //actualizo el fondo en negro
-         al_draw_bitmap(image,0,0,0); // muestro lo asignado en image
+         al_draw_bitmap(image,0,0,0); // muestro lo asignado en image , Fondo de pantalla
 		 al_draw_text(font,al_map_rgb(aux1.RED,aux1.GREEN,aux1.BLUE),20,300,0,"COMENZAR JUEGO"); //muestro texto
 		 al_draw_text(font,al_map_rgb(aux2.RED,aux2.GREEN,aux2.BLUE),320,300,0,"PUNTOS");  //muestro texto
 		 al_draw_text(font,al_map_rgb(aux3.RED,aux3.GREEN,aux3.BLUE),500,300,0,"SALIR"); //muestro texto
@@ -126,5 +126,6 @@ int main(int argc, char **argv){
    al_destroy_display(display);
    al_destroy_event_queue(event_queue);
    al_destroy_font(font);
-	return 0;	
+   
+ return 0;	
 	}
