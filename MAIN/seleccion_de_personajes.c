@@ -65,49 +65,50 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
    font=al_load_font("arial.ttf",25,0); // asigno font 
    
 //---------------RUTINA PARA CARGAR IMAGEN---------------------------------------------------------------------------------------------------------------------------------
-   image=al_load_bitmap("Seleccion_de_personajes.png"); // cargo fondo de pantalla          PENDIENTE: HACER UN IF EN CASO DE QUE NO CARGUE LA IMAGEN
-   goku[0]=al_load_bitmap("goku2.png"); //cargo imagen                                      // PENDIENTE : HACER FUNCION QUE CARGE IMAGENES
-   goku[1]=al_load_bitmap("goku3.png"); //cargo imagen
-   goku[2]=al_load_bitmap("goku4.png"); //cargo imagen
-   goku[3]=al_load_bitmap("goku5.png"); //cargo imagen
+   image=al_load_bitmap("./sprites/Seleccion_de_personajes.png"); // cargo fondo de pantalla          PENDIENTE: HACER UN IF EN CASO DE QUE NO CARGUE LA IMAGEN
    
-   vegeta[0]=al_load_bitmap("vegeta1.png"); //cargo imagen
-   vegeta[1]=al_load_bitmap("vegeta2.png"); //cargo imagen
-   vegeta[2]=al_load_bitmap("vegeta3.png"); //cargo imagen
+   goku[0]=al_load_bitmap("./sprites/goku2.png"); //cargo imagen                                      // PENDIENTE : HACER FUNCION QUE CARGE IMAGENES
+   goku[1]=al_load_bitmap("./sprites/goku3.png"); //cargo imagen
+   goku[2]=al_load_bitmap("./sprites/goku4.png"); //cargo imagen
+   goku[3]=al_load_bitmap("./sprites/goku5.png"); //cargo imagen
    
-   frezeer[0]=al_load_bitmap("frezeer1.png"); //cargo imagen
-   frezeer[1]=al_load_bitmap("frezeer2.png"); //cargo imagen
-   frezeer[2]=al_load_bitmap("frezeer3.png"); //cargo imagen
+   vegeta[0]=al_load_bitmap("./sprites/vegeta1.png"); //cargo imagen
+   vegeta[1]=al_load_bitmap("./sprites/vegeta2.png"); //cargo imagen
+   vegeta[2]=al_load_bitmap("./sprites/vegeta3.png"); //cargo imagen
    
-   bills[0]=al_load_bitmap("b1.bmp"); //cargo imagen
-   bills[1]=al_load_bitmap("b2.bmp"); //cargo imagen
-   bills[2]=al_load_bitmap("b3.bmp"); //cargo imagen
-   bills[3]=al_load_bitmap("b4.bmp"); //cargo imagen
-   bills[4]=al_load_bitmap("b5.bmp"); //cargo imagen
-   bills[5]=al_load_bitmap("b6.bmp"); //cargo imagen
-   bills[6]=al_load_bitmap("b7.bmp"); //cargo imagen
-   bills[7]=al_load_bitmap("b8.bmp"); //cargo imagen
-   bills[8]=al_load_bitmap("b9.bmp"); //cargo imagen
-   bills[9]=al_load_bitmap("b10.bmp"); //cargo imagen
-   bills[10]=al_load_bitmap("b11.bmp"); //cargo imagen
-   bills[11]=al_load_bitmap("b12.bmp"); //cargo imagen
-   bills[12]=al_load_bitmap("b13.bmp"); //cargo imagen
-   bills[13]=al_load_bitmap("b14.bmp"); //cargo imagen
-   bills[14]=al_load_bitmap("b15.bmp"); //cargo imagen
-   bills[15]=al_load_bitmap("b16.bmp"); //cargo imagen
-   bills[16]=al_load_bitmap("b17.bmp"); //cargo imagen
-   bills[17]=al_load_bitmap("b18.bmp"); //cargo imagen
-   bills[18]=al_load_bitmap("b19.bmp"); //cargo imagen
-   bills[19]=al_load_bitmap("b20.bmp"); //cargo imagen
-   bills[20]=al_load_bitmap("b21.bmp"); //cargo imagen
-   bills[21]=al_load_bitmap("b22.bmp"); //cargo imagen
-   bills[22]=al_load_bitmap("b23.bmp"); //cargo imagen
-   bills[23]=al_load_bitmap("b24.bmp"); //cargo imagen
-   bills[24]=al_load_bitmap("b25.bmp"); //cargo imagen
-   bills[25]=al_load_bitmap("b26.bmp"); //cargo imagen
-   bills[26]=al_load_bitmap("b27.bmp"); //cargo imagen
-   bills[27]=al_load_bitmap("b28.bmp"); //cargo imagen
-   bills[28]=al_load_bitmap("b29.bmp"); //cargo imagen
+   frezeer[0]=al_load_bitmap("./sprites/frezeer1.png"); //cargo imagen
+   frezeer[1]=al_load_bitmap("./sprites/frezeer2.png"); //cargo imagen
+   frezeer[2]=al_load_bitmap("./sprites/frezeer3.png"); //cargo imagen
+   
+   bills[0]=al_load_bitmap("./sprites/b1.bmp"); //cargo imagen
+   bills[1]=al_load_bitmap("./sprites/b2.bmp"); //cargo imagen
+   bills[2]=al_load_bitmap("./sprites/b3.bmp"); //cargo imagen
+   bills[3]=al_load_bitmap("./sprites/b4.bmp"); //cargo imagen
+   bills[4]=al_load_bitmap("./sprites/b5.bmp"); //cargo imagen
+   bills[5]=al_load_bitmap("./sprites/b6.bmp"); //cargo imagen
+   bills[6]=al_load_bitmap("./sprites/b7.bmp"); //cargo imagen
+   bills[7]=al_load_bitmap("./sprites/b8.bmp"); //cargo imagen
+   bills[8]=al_load_bitmap("./sprites/b9.bmp"); //cargo imagen
+   bills[9]=al_load_bitmap("./sprites/b10.bmp"); //cargo imagen
+   bills[10]=al_load_bitmap("./sprites/b11.bmp"); //cargo imagen
+   bills[11]=al_load_bitmap("./sprites/b12.bmp"); //cargo imagen
+   bills[12]=al_load_bitmap("./sprites/b13.bmp"); //cargo imagen
+   bills[13]=al_load_bitmap("./sprites/b14.bmp"); //cargo imagen
+   bills[14]=al_load_bitmap("./sprites/b15.bmp"); //cargo imagen
+   bills[15]=al_load_bitmap("./sprites/b16.bmp"); //cargo imagen
+   bills[16]=al_load_bitmap("./sprites/b17.bmp"); //cargo imagen
+   bills[17]=al_load_bitmap("./sprites/b18.bmp"); //cargo imagen
+   bills[18]=al_load_bitmap("./sprites/b19.bmp"); //cargo imagen
+   bills[19]=al_load_bitmap("./sprites/b20.bmp"); //cargo imagen
+   bills[20]=al_load_bitmap("./sprites/b21.bmp"); //cargo imagen
+   bills[21]=al_load_bitmap("./sprites/b22.bmp"); //cargo imagen
+   bills[22]=al_load_bitmap("./sprites/b23.bmp"); //cargo imagen
+   bills[23]=al_load_bitmap("./sprites/b24.bmp"); //cargo imagen
+   bills[24]=al_load_bitmap("./sprites/b25.bmp"); //cargo imagen
+   bills[25]=al_load_bitmap("./sprites/b26.bmp"); //cargo imagen
+   bills[26]=al_load_bitmap("./sprites/b27.bmp"); //cargo imagen
+   bills[27]=al_load_bitmap("./sprites/b28.bmp"); //cargo imagen
+   bills[28]=al_load_bitmap("./sprites/b29.bmp"); //cargo imagen
    
 
     for(i=0 ; i<BILLS.maxFrame;i++){

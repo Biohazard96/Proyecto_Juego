@@ -55,7 +55,7 @@ int main(int argc, char **argv){
 	al_install_keyboard();  //instalo el teclado
 	
 	font = al_load_font("arial.ttf",25,0);  // le asigno el font 
-	image = al_load_bitmap("MENU.png"); //le asigno la imagen del menu
+	image = al_load_bitmap("./sprites/MENU.png"); //le asigno la imagen del menu
 	
 	if(!image) {
       al_show_native_message_box(display, "Error", "Error", "Failed to load image!", 
