@@ -30,3 +30,4 @@ int crear_display(ALLEGRO_DISPLAY **,int,int);
 int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *);
 int MENU(ALLEGRO_MOUSE_STATE * ,struct color *,struct color *,struct color *);
 void free_image(ALLEGRO_BITMAP **, const int);  // segundo argumento recibe la cantidad de cuadros a liberar ==> "maxFrame"
+//void game_play(ALLEGRO_DISPLAY ***,xxxxxxxxxx);

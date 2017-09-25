@@ -66,18 +66,18 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
    
 //---------------RUTINA PARA CARGAR IMAGEN---------------------------------------------------------------------------------------------------------------------------------
    image=al_load_bitmap("Seleccion_de_personajes.png"); // cargo fondo de pantalla          PENDIENTE: HACER UN IF EN CASO DE QUE NO CARGUE LA IMAGEN
-   goku[0]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/goku2.png"); //cargo imagen                                      // PENDIENTE : HACER FUNCION QUE CARGE IMAGENES
-   goku[1]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/goku3.png"); //cargo imagen
-   goku[2]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/goku4.png"); //cargo imagen
-   goku[3]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/goku5.png"); //cargo imagen
+   goku[0]=al_load_bitmap("goku2.png"); //cargo imagen                                      // PENDIENTE : HACER FUNCION QUE CARGE IMAGENES
+   goku[1]=al_load_bitmap("goku3.png"); //cargo imagen
+   goku[2]=al_load_bitmap("goku4.png"); //cargo imagen
+   goku[3]=al_load_bitmap("goku5.png"); //cargo imagen
    
-   vegeta[0]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/vegeta1.png"); //cargo imagen
-   vegeta[1]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/vegeta2.png"); //cargo imagen
-   vegeta[2]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/vegeta3.png"); //cargo imagen
+   vegeta[0]=al_load_bitmap("vegeta1.png"); //cargo imagen
+   vegeta[1]=al_load_bitmap("vegeta2.png"); //cargo imagen
+   vegeta[2]=al_load_bitmap("vegeta3.png"); //cargo imagen
    
-   frezeer[0]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/frezeer1.png"); //cargo imagen
-   frezeer[1]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/frezeer2.png"); //cargo imagen
-   frezeer[2]=al_load_bitmap("/home/matias/Escritorio/Carpeta de Prueba/MAIN/sprites/frezeer3.png"); //cargo imagen
+   frezeer[0]=al_load_bitmap("frezeer1.png"); //cargo imagen
+   frezeer[1]=al_load_bitmap("frezeer2.png"); //cargo imagen
+   frezeer[2]=al_load_bitmap("frezeer3.png"); //cargo imagen
    
    bills[0]=al_load_bitmap("b1.bmp"); //cargo imagen
    bills[1]=al_load_bitmap("b2.bmp"); //cargo imagen
@@ -197,7 +197,7 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
 					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
 					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
 					
-					al_destroy_bitmap(image);//libero imagen
+					al_destroy_bitmap(image);//libero imagen				
 			  return 0;
 			}
 			
