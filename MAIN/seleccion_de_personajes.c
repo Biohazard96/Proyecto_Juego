@@ -118,7 +118,7 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
 //------------------------------------------------------------------------------------------------------------------------------------------------		
    al_register_event_source(event_queue, al_get_keyboard_event_source()); // le digo a la cola de evento que puede recibir eventos del teclado
    
-   al_register_event_source(event_queue, al_get_display_event_source((display))); // le digo a la cola de evento que puede recibir eventos del display
+   al_register_event_source(event_queue, al_get_display_event_source(display)); // le digo a la cola de evento que puede recibir eventos del display
  
    al_register_event_source(event_queue, al_get_timer_event_source(timer)); // le digo a la cola de evento que puede recibir eventos del timer
  
@@ -193,12 +193,16 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
            aux2.BLUE=0;
 			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu  <<<<<--------------------------//TEMPORAL
             {//TEMPORAL
-					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
-					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
-					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
-					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
-					
-					al_destroy_bitmap(image);//libero imagen				
+				
+				
+				if(!game_play(&display))
+				{
+					return -1;
+					}else {
+						SELECCION_DE_PERSONAJES(display);
+						}
+				
+				
 			  return 0;
 			}
 			
