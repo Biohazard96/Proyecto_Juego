@@ -7,7 +7,7 @@
 #define ANCHO 640
 #define ALTO 360
 #define FPS 60
-#define FPS_2 10
+#define FPS_2 10   // usado en seleccion de personajes
 
 struct color{     
 	int RED;
