@@ -28,6 +28,9 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
    int i;                   // auxiliar usada para ciclo for 
    int pos_x = ANCHO / 2;   // posicion en eje x
    int pos_y = ALTO / 2;    // posicion en eje y
+   int J1=-10;			// variable usada para seleccion de personajes
+   int J2=-10;         // variable usada para seleccion de personajes
+   
    ALLEGRO_FONT * font = NULL;
    ALLEGRO_EVENT_QUEUE *event_queue = NULL;  //cola de eventos
    ALLEGRO_TIMER *timer = NULL;  
@@ -191,19 +194,17 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
            aux2.RED=255;
            aux2.GREEN=255;
            aux2.BLUE=0;
-			if(state_mouse2.buttons & 1) // si hago click sobre VEGETA regresa al menu  <<<<<--------------------------//TEMPORAL
-            {//TEMPORAL
-				
-				
-				if(!game_play(&display))
-				{
-					return -1;
-					}else {
-						SELECCION_DE_PERSONAJES(display);
-						}
-				
-				
-			  return 0;
+			if(state_mouse2.buttons & 1) 
+            {
+				if(J1!=-10) J2 = Vegeta;
+				else J1= Vegeta;
+				if(J1!=-10 && J2!=-10)
+					{
+						if(!game_play(&display,J1,J2))
+							return 0;
+						
+					}
+					
 			}
 			
 		 }else if(state_mouse2.x > 220 && state_mouse2.x < 280 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "GOKU" le cambia color
@@ -211,44 +212,47 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
            aux3.GREEN=255;
            aux3.BLUE=0;
            
-			if(state_mouse2.buttons & 1) // si hago click sobre GOKU regresa al menu  <<<<<--------------------------//TEMPORAL
-            {//TEMPORAL
-				
-					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
-					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
-					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
-					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
-					
-					al_destroy_bitmap(image);//libero imagen
-			  return 0;
+			if(state_mouse2.buttons & 1) 
+            {
+				if(J1!=-10) J2 = Goku;
+				else J1= Goku;				
+				if(J1!=-10 && J2!=-10)
+					{
+						if(!game_play(&display,J1,J2))
+							return 0;
+					}				
+
 			}
 			}else if(state_mouse2.x > 370 && state_mouse2.x < 460 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "FREZEER" le cambia color
            aux4.RED=255;
            aux4.GREEN=255;
            aux4.BLUE=0;
-			if(state_mouse2.buttons & 1) // si hago click sobre FREZEER regresa al menu  <<<<<--------------------------//TEMPORAL
-            {//TEMPORAL
-					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
-					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
-					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
-					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
-					
-					al_destroy_bitmap(image);//libero imagen
-			  return 0;
+			if(state_mouse2.buttons & 1) 
+            {
+				if(J1!=-10) J2 = Frezeer;
+				else J1=Frezeer;
+				if(J1!=-10 && J2!=-10)
+					{
+						if(!game_play(&display,J1,J2))
+							return 0;
+					}
 			}
 			}else if(state_mouse2.x > 550 && state_mouse2.x < 610 && state_mouse2.y > 160 && state_mouse2.y < 175){ // Cuando el mouse esta sobre "BILLS" le cambia color
            aux5.RED=255;
            aux5.GREEN=255;
            aux5.BLUE=0;
-			if(state_mouse2.buttons & 1) // si hago click sobre BILLS regresa al menu   <<<<<--------------------------//TEMPORAL
+			if(state_mouse2.buttons & 1)
 				{
-					free_image(goku,GOKU.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps 
-					free_image(vegeta,VEGETA.maxFrame);   // llamo a funcion para liberar "x cantidad" de bitmaps
-					free_image(frezeer,FREZEER.maxFrame); // llamo a funcion para liberar "x cantidad" de bitmaps
-					free_image(bills,BILLS.maxFrame);  // llamo a funcion para liberar "x cantidad" de bitmaps
 					
-					al_destroy_bitmap(image);//libero imagen
-			  return 0;
+				if(J1!=-10) J2 = Bills;
+				else J1=Bills;
+				
+				if(J1!=-10 && J2!=-10)
+					{
+						if(!game_play(&display,J1,J2))
+							return 0;
+					}
+			  
 				}
 			}else {
            aux1.RED=255;
@@ -300,7 +304,7 @@ int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *display){
 					al_destroy_bitmap(image);//libero imagen
          return -1;
       }
-    printf("pos x = %d  pos y = %d \n",state_mouse2.x,state_mouse2.y); // sirve para saber la posicion del mouse en el eje (x ,y)/////<<<<<--------
+    printf("pos x = %d  pos y = %d  J1 %d  J2 %d\n",state_mouse2.x,state_mouse2.y,J1,J2); // sirve para saber la posicion del mouse en el eje (x ,y)/////<<<<<--------
  //------------------------------------------------------------------------------------------------>
       if(redraw && al_is_event_queue_empty(event_queue)) {                                          
           redraw = false;																			

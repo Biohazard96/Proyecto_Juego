@@ -32,7 +32,7 @@ struct player{
 	int ID;
 	int x;
 	int y;
-	int lives;
+	int life;
 	int speed;
 	int boundx;
 	int boundy;
@@ -46,7 +46,7 @@ int crear_display(ALLEGRO_DISPLAY **,int,int);
 int SELECCION_DE_PERSONAJES(ALLEGRO_DISPLAY *);
 int MENU(ALLEGRO_MOUSE_STATE * ,struct color *,struct color *,struct color *);
 void free_image(ALLEGRO_BITMAP **, const int);  // segundo argumento recibe la cantidad de cuadros a liberar ==> "maxFrame"
-int game_play(ALLEGRO_DISPLAY **);// este "const int " define que personaje se va a usar. ""enum PJ{Vegeta=0,Goku=1,Frezeer=2,Bills=3};""  
+int game_play(ALLEGRO_DISPLAY **,const int,const int);// este "const int " define que personaje se va a usar. ""enum PJ{Vegeta=0,Goku=1,Frezeer=2,Bills=3};""  
 void Move_player_Up(struct player *);
 void Move_player_Down(struct player *);
 void Move_player_Left(struct player *);
@@ -54,4 +54,5 @@ void Move_player_Right(struct player *);
 void Draw_player(struct player *);// este "const int " define que personaje se va a usar. ""enum PJ{Vegeta=0,Goku=1,Frezeer=2,Bills=3};""
 void Init_player1(struct player *); 
 void Init_player2(struct player *); 
-void load_image(const int,ALLEGRO_BITMAP **,ALLEGRO_BITMAP **);
+void load_Move(const int,ALLEGRO_BITMAP **,ALLEGRO_BITMAP **,ALLEGRO_BITMAP **,ALLEGRO_BITMAP **,ALLEGRO_BITMAP **);
+void load_Attack(const int , ALLEGRO_BITMAP **);
