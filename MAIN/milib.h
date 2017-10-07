@@ -39,6 +39,10 @@ struct player{
 	int score;
 	};
 
+struct alto_ancho{
+	int alto;
+	int ancho;
+	};
 int crear_timer(ALLEGRO_TIMER **,const float);
 int init_al(void);
 int crear_evento(ALLEGRO_EVENT_QUEUE **);

@@ -14,7 +14,7 @@ enum KEYS_PLAYER2{UP,DOWN,LEFT,RIGHT,O,P,K,L}; //{arriba,abajo,izquierda,derecha
 bool keys_player1[8]={false,false,false,false,false,false,false,false};
 bool keys_player2[8]={false,false,false,false,false,false,false,false};
 
-int game_play(ALLEGRO_DISPLAY ** display,const int J1,const int J2){
+int game_play(ALLEGRO_DISPLAY ** display,const int JUGADOR_1,const int JUGADOR_2){
 	
    struct player player1;
    struct player player2;
@@ -42,7 +42,14 @@ int game_play(ALLEGRO_DISPLAY ** display,const int J1,const int J2){
    int cont_tiempo = 1;
    int delay = 1;
    char tiempo[5];
-  
+   char VIDA_J1[10];
+   char VIDA_J2[10];
+   struct alto_ancho J1;
+   struct alto_ancho J2;
+   struct alto_ancho Retrato_J1;
+   struct alto_ancho Retrato_J2;
+
+      
 	   timer = al_create_timer(1.0 / FPS_3);
    if(!timer) {
       fprintf(stderr, "failed to create timer!\n");
@@ -68,10 +75,10 @@ int game_play(ALLEGRO_DISPLAY ** display,const int J1,const int J2){
 	font = al_load_font("arial.ttf",50,0);
 	
    image = al_load_bitmap ("./sprites/campo.png");
-   load_Move(J1, &MOVIMIENTO_J1, &ESTATICO_J1, &VUELO_J1, &BAJAR_J1,&RETRATO_J1);
-   load_Move(J2, &MOVIMIENTO_J2, &ESTATICO_J2, &VUELO_J2, &BAJAR_J2,&RETRATO_J2);
-   load_Attack(J1,&MOV_KEY_F_J1);
-   load_Attack(J2,&MOV_KEY_O_J2);
+   load_Move(JUGADOR_1, &MOVIMIENTO_J1, &ESTATICO_J1, &VUELO_J1, &BAJAR_J1,&RETRATO_J1);
+   load_Move(JUGADOR_2, &MOVIMIENTO_J2, &ESTATICO_J2, &VUELO_J2, &BAJAR_J2,&RETRATO_J2);
+   load_Attack(JUGADOR_1,&MOV_KEY_F_J1);
+   load_Attack(JUGADOR_2,&MOV_KEY_O_J2);
    
    al_register_event_source(event_queue, al_get_keyboard_event_source());
 	
@@ -103,6 +110,9 @@ int game_play(ALLEGRO_DISPLAY ** display,const int J1,const int J2){
 		 
 		 else cont_tiempo =0;
 		 }
+		 
+		 sprintf(VIDA_J1,"VIDA: %d",player1.life);
+		 sprintf(VIDA_J2,"VIDA: %d",player2.life);
 		 	
          if(keys_player1[W])
 			Move_player_Up(&player1); // hay  que crear un "struct player player1"
@@ -211,70 +221,132 @@ int game_play(ALLEGRO_DISPLAY ** display,const int J1,const int J2){
 		
       if(redraw && al_is_event_queue_empty(event_queue)) {
          redraw = false;
+         
+                  
          al_clear_to_color(al_map_rgb(0,0,0));
          al_draw_bitmap(image,0,0,0);
          
+//----------------------------------------RUTINA DE VIDA , RETRATO Y TIEMPO DEL JUEGO------------------------------------------------------------------------------------------------------------
          al_draw_text(font,al_map_rgb(255,0,0),(ANCHO/2)-20,20,0,tiempo);
-       
-         al_draw_rounded_rectangle(50,50,100+(player1.life*1.5),50,0,0,al_map_rgb(0,255,255),50);
-         al_draw_rounded_rectangle(400,50,450+(player2.life*1.5),50,0,0,al_map_rgb(0,255,255),50);
          
+         Retrato_J1.ancho = al_get_bitmap_width(RETRATO_J1);
+         Retrato_J1.alto = al_get_bitmap_height(RETRATO_J1);
+         Retrato_J2.ancho = al_get_bitmap_width(RETRATO_J2);
+         Retrato_J2.alto = al_get_bitmap_height(RETRATO_J2);
+         
+		al_draw_text(font,al_map_rgb(0,255,0),Retrato_J1.ancho,20,0,VIDA_J1);
+		al_draw_text(font,al_map_rgb(0,255,0),ANCHO - Retrato_J2.ancho-180,20,0,VIDA_J2);
          al_draw_bitmap(RETRATO_J1,0,0,0);
          al_draw_bitmap(RETRATO_J2,540,0,0);
-         
+ //----------------------------------------------------------------------------------------------------------------------------------------------------       
          if(keys_player1[D] && !keys_player1[A])
 		     {
 				al_draw_bitmap(MOVIMIENTO_J1,player1.x,player1.y,0);
+				J1.ancho = al_get_bitmap_width(MOVIMIENTO_J1);
+				J1.alto = al_get_bitmap_height(MOVIMIENTO_J1);
 			 }
         else if(keys_player1[A] && !keys_player1[D])
 		     {
 				al_draw_bitmap(MOVIMIENTO_J1,player1.x,player1.y,1);
+				J1.ancho = al_get_bitmap_width(MOVIMIENTO_J1);
+				J1.alto = al_get_bitmap_height(MOVIMIENTO_J1);				
 			 }
         else if(keys_player1[W] && !keys_player1[S])
 		     {
 				al_draw_bitmap(VUELO_J1,player1.x,player1.y,DIRECTION_J1);
+				J1.ancho = al_get_bitmap_width(VUELO_J1);
+				J1.alto = al_get_bitmap_height(VUELO_J1);
 			 }
         else if(keys_player1[S] && !keys_player1[W])
 		     {
 				al_draw_bitmap(BAJAR_J1,player1.x,player1.y,DIRECTION_J1);
+				J1.ancho = al_get_bitmap_width(BAJAR_J1);
+				J1.alto = al_get_bitmap_height(BAJAR_J1);
 			 }
 		else if(keys_player1[F] && !keys_player1[A] && !keys_player1[D])
 			{
 				al_draw_bitmap(MOV_KEY_F_J1 , player1.x , player1.y,DIRECTION_J1);
-				keys_player1[F]=false;
+				J1.ancho = al_get_bitmap_width(MOV_KEY_F_J1);
+				J1.alto = al_get_bitmap_height(MOV_KEY_F_J1);
+				//keys_player1[F]=false;
 			}         
          else {
 			 al_draw_bitmap(ESTATICO_J1,player1.x,player1.y,DIRECTION_J1);
+			 J1.ancho = al_get_bitmap_width(ESTATICO_J1);
+			 J1.alto = al_get_bitmap_height(ESTATICO_J1);
 			 }
 
 
          if(keys_player2[RIGHT] && !keys_player2[LEFT])
 		     {
 				al_draw_bitmap(MOVIMIENTO_J2,player2.x,player2.y,0);
+				J2.ancho = al_get_bitmap_width(MOVIMIENTO_J2);
+				J2.alto = al_get_bitmap_height(MOVIMIENTO_J2);	
 			 }
         else if(keys_player2[LEFT] && !keys_player2[RIGHT])
 		     {
 				al_draw_bitmap(MOVIMIENTO_J2,player2.x,player2.y,1);
+				J2.ancho = al_get_bitmap_width(MOVIMIENTO_J2);
+				J2.alto = al_get_bitmap_height(MOVIMIENTO_J2);				
 			 }
         else if(keys_player2[UP] && !keys_player2[DOWN])
 		     {
 				al_draw_bitmap(VUELO_J2,player2.x,player2.y,DIRECTION_J2);
+				J2.ancho = al_get_bitmap_width(VUELO_J2);
+				J2.alto = al_get_bitmap_height(VUELO_J2);
 			 }
         else if(keys_player2[DOWN] && !keys_player2[UP])
 		     {
 				al_draw_bitmap(BAJAR_J2,player2.x,player2.y,DIRECTION_J2);
+				J2.ancho = al_get_bitmap_width(BAJAR_J2);
+				J2.alto = al_get_bitmap_height(BAJAR_J2);
 			 }    			          
 		else if(keys_player2[O] && !keys_player2[LEFT] && !keys_player2[RIGHT])
 			{
 				al_draw_bitmap(MOV_KEY_O_J2 , player2.x , player2.y,DIRECTION_J2);
-				keys_player2[O]=false;				
+				J2.ancho = al_get_bitmap_width(MOV_KEY_O_J2);
+				J2.alto = al_get_bitmap_height(MOV_KEY_O_J2);				
+				//keys_player2[O]=false;				
 			}
          else {
 			 al_draw_bitmap(ESTATICO_J2,player2.x,player2.y,DIRECTION_J2);
+			 J2.ancho = al_get_bitmap_width(ESTATICO_J2);
+			 J2.alto = al_get_bitmap_height(ESTATICO_J2);
 			 }
-		
-		
+//----------------------------------------------RUTINA DE COLISION------------------------------------------------------------------------------------		
+         al_draw_rectangle( player1.x , player1.y , player1.x + J1.ancho , player1.y + J1.alto , al_map_rgb(255,0,0),0);
+         al_draw_rectangle( player2.x , player2.y , player2.x + J2.ancho , player2.y + J2.alto , al_map_rgb(255,0,0),0);
+         
+         
+         
+         if(keys_player1[F] && !keys_player1[W] && !keys_player1[S] && !keys_player1[A] && !keys_player1[D] )
+			{
+			 		
+				if( (player1.x +((J1.ancho) / 2)) <= player2.x && (player1.x + J1.ancho) >= player2.x && (player1.y) >= player2.y && (player1.y + J1.alto) <= (player2.y + J2.alto) )
+					{
+					if(player2.life >0)player2.life -= 10;		
+					}else if(player1.x <= player2.x + J2.ancho && player1.x +(J1.ancho /2) >= player2.x + J2.ancho && (player1.y) >= player2.y && (player1.y) <= player2.y + J2.alto )
+						{
+						if(player2.life >0)player2.life -= 10;		
+						}
 
+					keys_player1[F]=false;// <<<<------- importante
+			} 
+			
+		if(keys_player2[O] && !keys_player2[UP] && !keys_player2[DOWN] && !keys_player2[LEFT] && !keys_player2[RIGHT])
+			{
+				
+				if( (player2.x +((J2.ancho) / 2)) <= player1.x && (player2.x + J2.ancho) >= player1.x && player2.y >= player1.y && (player2.y + J2.alto) <= (player1.y + J1.alto) )
+					{
+						if(player1.life >0)player1.life -= 10;		
+					}else if (player2.x <= player1.x + J1.ancho && player2.x +(J2.ancho /2) >= player1.x + J1.ancho && (player2.y) >= player1.y && (player2.y) <= player1.y + J1.alto )
+						{
+						if(player1.life >0)player1.life -= 10;									
+						}
+
+					keys_player2[O]=false;// <<<<------- importante
+			} 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
 						
          al_flip_display();
       }
